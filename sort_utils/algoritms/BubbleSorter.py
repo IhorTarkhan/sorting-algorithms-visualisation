@@ -2,7 +2,7 @@ from sort_utils.SorterResult import SorterResult
 from sort_utils.algoritms.AbstractSorter import AbstractSorter
 
 
-class Bubble(AbstractSorter):
+class BubbleSorter(AbstractSorter):
     def sort(self, initial_array: [int]) -> SorterResult:
         # Your logic
         # Please do not sort initial_array, left it unsorted
