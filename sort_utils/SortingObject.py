@@ -2,16 +2,13 @@ from sorting_techniques import pysort
 
 
 class SortingObject:
-    __instance = pysort.Sorting()
+    __instance = None
 
     def __init__(self):
-        if not Singleton.__instance:
-            print(" __init__ method called..")
-        else:
-            print("Instance already created:", self.get_instance())
+        raise PermissionError("Not permit to create object")
 
     @classmethod
     def get_instance(cls):
         if not cls.__instance:
-            cls.__instance = Singleton()
+            cls.__instance = pysort.Sorting()
         return cls.__instance
