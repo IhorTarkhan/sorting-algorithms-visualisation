@@ -1,3 +1,4 @@
-def get_results(input_list):
-    for item in input_list:
+def get_results(inputs,active):
+    for item in inputs:
         print(item)
+    print(active)

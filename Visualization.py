@@ -1,15 +1,16 @@
 import pygame as pg
 from pygame_widgets import Button
 from Extract_results import get_results
+from Check_box import Checkbox
 
 def main():
     screen = pg.display.set_mode((640, 480))
 
     font = pg.font.Font(None, 32)
     input_boxes = [
+        pg.Rect(150, 50, 140, 32),
         pg.Rect(150, 100, 140, 32),
-        pg.Rect(150, 150, 140, 32),
-        pg.Rect(150, 200, 140, 32)
+        pg.Rect(150, 150, 140, 32)
     ]
     color_inactive = pg.Color('lightskyblue3')
     color_active = pg.Color('dodgerblue2')
@@ -29,14 +30,19 @@ def main():
     active = [False, False, False]
     text = ['', '', '']
     done = False
+    chkbox = Checkbox(
+        screen, 150, 230,
+        caption='Randomize', color=color_inactive,
+        text_offset=(75, 0), font_color=color_inactive,
+        font_size=32
+    )
 
     button = Button(
-        screen, 100, 350, 100, 50, text='OK',
+        screen, 220, 350, 100, 50, text='OK',
         fontSize=18,
         inactiveColour=color_inactive,
         pressedColour=color_active,
-        onClick=get_results,
-        onClickParams=[text]
+        onClick=lambda: get_results(text,chkbox.checked)
     )
 
 
@@ -60,6 +66,8 @@ def main():
                             text[index] = text[index][:-1]
                         else:
                             text[index] += event.unicode
+
+            chkbox.update_checkbox(event)
         screen.fill((30, 30, 30))
         # Render the current text.
         txt_surface_for_input_boxes = []
@@ -78,8 +86,11 @@ def main():
                         (input_boxes[index].x - labels_for_input_boxes[index].get_width(), input_boxes[index].y + 5))
             # Blit the input_box rect.
             pg.draw.rect(screen, color[index], input_boxes[index], 2)
+        warning = font.render('The array will be always sorted in acsending order', True, color_active)
+        screen.blit(warning,(50,280))
         button.listen(events)
         button.draw()
+        chkbox.render_checkbox()
         pg.display.flip()
 
 
