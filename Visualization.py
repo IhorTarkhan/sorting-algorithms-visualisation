@@ -1,8 +1,10 @@
 import pygame as pg
-
+from pygame_widgets import Button
+from Extract_results import get_results
 
 def main():
     screen = pg.display.set_mode((640, 480))
+
     font = pg.font.Font(None, 32)
     input_boxes = [
         pg.Rect(150, 100, 140, 32),
@@ -16,11 +18,31 @@ def main():
         color_inactive,
         color_inactive
     ]
+    labels_text_for_input_boxes = [
+        'max: ',
+        'min: ',
+        'quantity: '
+    ]
+
+
+
     active = [False, False, False]
     text = ['', '', '']
     done = False
+
+    button = Button(
+        screen, 100, 350, 100, 50, text='OK',
+        fontSize=18,
+        inactiveColour=color_inactive,
+        pressedColour=color_active,
+        onClick=get_results,
+        onClickParams=[text]
+    )
+
+
     while not done:
-        for event in pg.event.get():
+        events = pg.event.get()
+        for event in events:
             if event.type == pg.QUIT:
                 done = True
             if event.type == pg.MOUSEBUTTONDOWN:
@@ -30,13 +52,11 @@ def main():
                     else:
                         active[index] = False
                     color[index] = color_active if active[index] else color_inactive
+
             if event.type == pg.KEYDOWN:
                 for index in range(3):
                     if active[index]:
-                        if event.key == pg.K_RETURN:
-                            print(text[index])
-                            text[index] = ''
-                        elif event.key == pg.K_BACKSPACE:
+                        if event.key == pg.K_BACKSPACE:
                             text[index] = text[index][:-1]
                         else:
                             text[index] += event.unicode
@@ -44,11 +64,7 @@ def main():
         # Render the current text.
         txt_surface_for_input_boxes = []
         labels_for_input_boxes = []
-        labels_text_for_input_boxes = [
-            'max: ',
-            'min: ',
-            'quantity: '
-        ]
+
         for index in range(3):
             txt_surface_for_input_boxes.append(font.render(text[index], True, color[index]))
             labels_for_input_boxes.append(font.render(labels_text_for_input_boxes[index], True, color[index]))
@@ -62,7 +78,8 @@ def main():
                         (input_boxes[index].x - labels_for_input_boxes[index].get_width(), input_boxes[index].y + 5))
             # Blit the input_box rect.
             pg.draw.rect(screen, color[index], input_boxes[index], 2)
-
+        button.listen(events)
+        button.draw()
         pg.display.flip()
 
 
