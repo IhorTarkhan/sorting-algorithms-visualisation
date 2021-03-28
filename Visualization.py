@@ -5,9 +5,9 @@ def main():
     screen = pg.display.set_mode((640, 480))
     font = pg.font.Font(None, 32)
     input_boxes = [
-        pg.Rect(100, 100, 140, 32),
-        pg.Rect(100, 150, 140, 32),
-        pg.Rect(100, 200, 140, 32)
+        pg.Rect(150, 100, 140, 32),
+        pg.Rect(150, 150, 140, 32),
+        pg.Rect(150, 200, 140, 32)
     ]
     color_inactive = pg.Color('lightskyblue3')
     color_active = pg.Color('dodgerblue2')
@@ -16,8 +16,8 @@ def main():
         color_inactive,
         color_inactive
     ]
-    active = [False,False,False]
-    text = ['','','']
+    active = [False, False, False]
+    text = ['', '', '']
     done = False
     while not done:
         for event in pg.event.get():
@@ -42,19 +42,29 @@ def main():
                             text[index] += event.unicode
         screen.fill((30, 30, 30))
         # Render the current text.
-        txt_surface = []
+        txt_surface_for_input_boxes = []
+        labels_for_input_boxes = []
+        labels_text_for_input_boxes = [
+            'max: ',
+            'min: ',
+            'quantity: '
+        ]
         for index in range(3):
-            txt_surface.append( font.render(text[index], True, color[index]))
+            txt_surface_for_input_boxes.append(font.render(text[index], True, color[index]))
+            labels_for_input_boxes.append(font.render(labels_text_for_input_boxes[index], True, color[index]))
         # Resize the box if the text is too long.
         for index in range(3):
-            width = max(200, txt_surface[index].get_width() + 10)
+            width = max(200, txt_surface_for_input_boxes[index].get_width() + 10)
             input_boxes[index].w = width
-        # Blit the text.
-            screen.blit(txt_surface[index], (input_boxes[index].x + 5, input_boxes[index].y + 5))
-        # Blit the input_box rect.
+            # Blit the text.
+            screen.blit(txt_surface_for_input_boxes[index], (input_boxes[index].x + 5, input_boxes[index].y + 5))
+            screen.blit(labels_for_input_boxes[index],
+                        (input_boxes[index].x - labels_for_input_boxes[index].get_width(), input_boxes[index].y + 5))
+            # Blit the input_box rect.
             pg.draw.rect(screen, color[index], input_boxes[index], 2)
 
         pg.display.flip()
+
 
 pg.init()
 main()
