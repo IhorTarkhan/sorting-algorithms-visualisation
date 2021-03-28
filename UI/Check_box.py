@@ -1,5 +1,5 @@
 import pygame as pg
-from Extract_results import get_results
+
 pg.init()
 
 
@@ -53,18 +53,18 @@ class Checkbox:
             self.active = False
 
     def _mouse_up(self):
-            if self.active and not self.checked and self.click:
-                    self.checked = True
-            elif self.checked:
-                self.checked = False
-                self.unchecked = True
+        if self.active and not self.checked and self.click:
+            self.checked = True
+        elif self.checked:
+            self.checked = False
+            self.unchecked = True
 
-            if self.click is True and self.active is False:
-                if self.checked:
-                    self.checked = True
-                if self.unchecked:
-                    self.unchecked = True
-                self.active = False
+        if self.click is True and self.active is False:
+            if self.checked:
+                self.checked = True
+            if self.unchecked:
+                self.unchecked = True
+            self.active = False
 
     def update_checkbox(self, event_object):
         if event_object.type == pg.MOUSEBUTTONDOWN:
@@ -72,9 +72,7 @@ class Checkbox:
             px, py, w, h = self.checkbox_obj
             if px < x < px + w and px < x < px + w:
                 self.checked = not self.checked
-            #print(self.checked)
-
-
+            # print(self.checked)
 
     def is_checked(self):
         if self.checked is True:
@@ -89,14 +87,12 @@ class Checkbox:
             return False
 
 
-
-
 def main():
     WIDTH = 800
     HEIGHT = 600
     display = pg.display.set_mode((WIDTH, HEIGHT))
 
-    chkbox = Checkbox(display, 300, 400,caption='text')
+    chkbox = Checkbox(display, 300, 400, caption='text')
 
     running = True
     while running:
@@ -110,5 +106,6 @@ def main():
         display.fill((200, 200, 200))
         chkbox.render_checkbox()
         pg.display.flip()
+
 
 if __name__ == '__main__': main()
