@@ -16,8 +16,3 @@ def generate_number_array(min_val: int, max_val: int, size: int, order: ArrayOrd
     if order is ArrayOrderEnum.RANDOM:
         return list(generated_array)
     raise ValueError('"order" value is not supported')
-
-
-print(generate_number_array(1, 25, 9, ArrayOrderEnum.DESC))
-print(generate_number_array(1, 25, 9, ArrayOrderEnum.ASC))
-print(generate_number_array(1, 25, 9, ArrayOrderEnum.RANDOM))
