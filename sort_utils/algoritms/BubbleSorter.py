@@ -1,9 +1,14 @@
+import copy
+import time
+
 from sort_utils.SorterResult import SorterResult
+from sort_utils.SortingObject import SortingObject
 from sort_utils.algoritms.AbstractSorter import AbstractSorter
 
 
 class BubbleSorter(AbstractSorter):
     def sort(self, initial_array: [int]) -> SorterResult:
-        # Your logic
-        # Please do not sort initial_array, left it unsorted
-        return SorterResult(time=5, size=50)
+        time_start = time.time()
+        SortingObject.get_instance().bubbleSort(copy.copy(initial_array))
+        time_stop = time.time()
+        return SorterResult(time=(time_stop - time_start))
