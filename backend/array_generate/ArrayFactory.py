@@ -1,6 +1,6 @@
 from numpy import random
 
-from array_generate_utils.ArrayOrderEnum import ArrayOrderEnum
+from backend.array_generate.ArrayOrderEnum import ArrayOrderEnum
 
 
 def generate_number_array(min_val: int, max_val: int, size: int, order: ArrayOrderEnum) -> list:
