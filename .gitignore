@@ -1,2 +1,4 @@
 .idea
 sorting-algorithms-visualisation.iml
+backend/db/configuration.ini
+**/__pycache__
