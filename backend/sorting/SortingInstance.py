@@ -1,7 +1,7 @@
 from sorting_techniques import pysort
 
 
-class SortingObject:
+class SortingInstance:
     __instance = None
 
     def __init__(self):
