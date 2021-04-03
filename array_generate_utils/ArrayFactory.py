@@ -6,7 +6,7 @@ from array_generate_utils.ArrayOrderEnum import ArrayOrderEnum
 def generate_number_array(min_val: int, max_val: int, size: int, order: ArrayOrderEnum) -> list:
     if min_val > max_val:
         raise ValueError('"min" value is bigger them "max" value')
-    if size < 0:
+    if size <= 0:
         raise ValueError('"size" value must be positive')
     generated_array = random.randint(max_val - min_val, size=size) + min_val
     if order is ArrayOrderEnum.ASC:

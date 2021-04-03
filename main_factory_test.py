@@ -7,7 +7,7 @@ from sort_utils.algoritms.MargeSorter import MargeSorter
 from sort_utils.algoritms.QuickSorter import QuickSorter
 from sort_utils.algoritms.RadixSorter import RadixSorter
 
-array = generate_number_array(1, 1000, 100_000, ArrayOrderEnum.RANDOM)
+array = generate_number_array(1, 1000, 100, ArrayOrderEnum.RANDOM)
 
 brick = BrickSorter().benchmark(array)
 print('brick', brick)
