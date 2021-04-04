@@ -16,7 +16,8 @@ def sorting_time(sort, initial_array):
 
 
 def sorting_size(sort, initial_array):
-    return sum(memory_usage(lambda: sort(copy.deepcopy(initial_array))))
+    array_copy = copy.deepcopy(initial_array)
+    return sum(memory_usage(lambda: sort(array_copy)))
 
 
 class AbstractSorter:

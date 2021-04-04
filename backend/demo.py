@@ -5,7 +5,7 @@ from entity.ArrayOrderEnum import ArrayOrderEnum
 
 if __import__('__main__'):
     create_table_if_not_exist()
-    for size in range(100):
+    for size in range(1, 1001):
         for iteration in range(100):
             print('size={};\t\titeration={}'.format(size, iteration))
             run_benchmark(1, 100, size, ArrayOrderEnum.RANDOM)

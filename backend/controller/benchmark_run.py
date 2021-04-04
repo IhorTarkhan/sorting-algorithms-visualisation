@@ -18,7 +18,7 @@ def run_benchmark(min_val: int, max_val: int, size: int, order: ArrayOrderEnum):
     cocktail_log = log_benchmark(SortAlgorithmEnum.COCKTAIL)
     marge_log = log_benchmark(SortAlgorithmEnum.MARGE)
     quick_log = log_benchmark(SortAlgorithmEnum.QUICK)
-    # radix_log = log_benchmark(SortAlgorithmEnum.RADIX)
+    radix_log = log_benchmark(SortAlgorithmEnum.RADIX)
 
-    new_logs = [brick_log, bubble_log, cocktail_log, marge_log, quick_log]
+    new_logs = [brick_log, bubble_log, cocktail_log, marge_log, quick_log, radix_log]
     create_sorting_logs(new_logs)
