@@ -12,6 +12,6 @@ Andruhus..............
 
 Andruhus, I know you read this, just remove this text and write something useful, not procrastinate, Bitte schön
 
-Otherwise KZhereb will bite us for this
+Otherwise KZhereb will beat us for this
 
 ANDRUHUS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
