@@ -15,6 +15,7 @@ class Connector:
         cursor = database.cursor()
         cursor.execute(sql)
         result = cursor.fetchall()
+        database.commit()
         cursor.close()
         database.close()
         return result
