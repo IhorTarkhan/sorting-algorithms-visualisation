@@ -1,4 +1,4 @@
-from backend.service.sorting.SortAlgorithmEnum import SortAlgorithmEnum
+from backend.entity.SortAlgorithmEnum import SortAlgorithmEnum
 from backend.service.sorting.algoritms.AbstractSorter import AbstractSorter
 from backend.service.sorting.algoritms.BrickSorter import BrickSorter
 from backend.service.sorting.algoritms.BubbleSorter import BubbleSorter

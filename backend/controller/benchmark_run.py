@@ -1,6 +1,6 @@
 from backend.service.array_generate.ArrayFactory import generate_number_array
-from backend.service.array_generate.ArrayOrderEnum import ArrayOrderEnum
-from backend.service.sorting.SortAlgorithmEnum import SortAlgorithmEnum
+from backend.entity.ArrayOrderEnum import ArrayOrderEnum
+from backend.entity.SortAlgorithmEnum import SortAlgorithmEnum
 from backend.service.sorting.SortAlgorithmSingleton import SortAlgorithmSingleton
 
 

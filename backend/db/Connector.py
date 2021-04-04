@@ -4,7 +4,7 @@ import sys
 import mysql.connector
 
 
-class MySqlDb:
+class Connector:
     config = configparser.ConfigParser()
     config.read(sys.argv[1])
     mysql_config = config['mysql']
