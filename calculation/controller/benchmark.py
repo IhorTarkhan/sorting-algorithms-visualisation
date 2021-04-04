@@ -12,8 +12,9 @@ from entity.StatisticSortingResponse import StatisticSortingResponse
 def run_benchmark(min_val: int, max_val: int, size: int, order: ArrayOrderEnum) \
         -> List[SortingLog]:
     """
-        This is endpoint for UI part. By this endpoint UI can interact with 'calculation' part
-
+        This is endpoint for UI part. By this endpoint UI can interact with 'calculation' part.
+        Function that run all available sorting algorithm, calculate time and memory-size-usage,
+        save this data to database as logs
     """
     array = generate_number_array(min_val, max_val, size, order)
 
@@ -34,6 +35,11 @@ def run_benchmark(min_val: int, max_val: int, size: int, order: ArrayOrderEnum) 
 
 
 def get_statistic() -> List[StatisticSortingResponse]:
+    """
+        This is endpoint for UI part. By this endpoint UI can interact with 'calculation' part.
+        Function that return statistic of all ever running sorts with calculating average
+        time and memory-size-usage
+    """
     avg_logs = get_average_logs()
     response_list: List[StatisticSortingResponse] = []
     for log in avg_logs:
