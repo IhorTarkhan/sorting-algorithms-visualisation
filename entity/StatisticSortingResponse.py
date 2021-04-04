@@ -3,7 +3,7 @@ from entity.SortAlgorithmEnum import SortAlgorithmEnum
 
 class StatisticSortingResponse:
     """
-        Statistic data transfer object, contains
+        Statistic data transfer object (DTO), contains
             - sorting type (Bubble, Merge, etc)
             - size of array that was sorted in this way
             - three times of this sort (in 'best', 'avg', 'worst' cases)

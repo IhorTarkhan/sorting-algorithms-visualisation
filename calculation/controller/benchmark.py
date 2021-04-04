@@ -12,6 +12,15 @@ from entity.StatisticSortingResponse import StatisticSortingResponse
 def run_benchmark(min_val: int, max_val: int, size: int, order: ArrayOrderEnum) \
         -> List[SortingLog]:
     """
+        Implementation Model–view–controller Design Pattern
+
+        ...
+
+        Trying to implement MVC pattern, separate program for 'Frontend' and 'Backend',
+        this is controller part - the mediator between User interface and calculation interface
+
+        ...
+
         This is endpoint for UI part. By this endpoint UI can interact with 'calculation' part.
         Function that run all available sorting algorithm, calculate time and memory-size-usage,
         save this data to database as logs
@@ -36,6 +45,15 @@ def run_benchmark(min_val: int, max_val: int, size: int, order: ArrayOrderEnum) 
 
 def get_statistic() -> List[StatisticSortingResponse]:
     """
+        Implementation Model–view–controller Design Pattern
+
+        ...
+
+        Trying to implement MVC pattern, separate program for 'Frontend' and 'Backend',
+        this is controller part - the mediator between User interface and calculation interface
+
+        ...
+
         This is endpoint for UI part. By this endpoint UI can interact with 'calculation' part.
         Function that return statistic of all ever running sorts with calculating average
         time and memory-size-usage

@@ -3,7 +3,7 @@ from sorting_techniques import pysort
 
 class PySorter:
     """
-        Implementation of Singleton Mediator
+        Implementation of Singleton Pattern
 
         ...
 
