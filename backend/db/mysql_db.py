@@ -1,9 +1,10 @@
 import configparser
+import sys
 
 import mysql.connector
 
 config = configparser.ConfigParser()
-config.read('configuration.ini')
+config.read(sys.argv[1])
 mysql_config = config['mysql']
 
 
