@@ -3,6 +3,9 @@ from backend.db.sorting_logs_connector import create_table_if_not_exist
 from entity.ArrayOrderEnum import ArrayOrderEnum
 
 if __import__('__main__'):
+    """
+        Function to demonstrate how to use controllers
+    """
     create_table_if_not_exist()
 
     run_benchmark(1, 100, 100, ArrayOrderEnum.RANDOM)

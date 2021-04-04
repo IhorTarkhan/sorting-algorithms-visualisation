@@ -2,6 +2,9 @@ from sorting_techniques import pysort
 
 
 class PySorter:
+    """
+
+    """
     __instance = None
 
     def __init__(self):
