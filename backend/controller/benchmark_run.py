@@ -1,12 +1,15 @@
+from typing import List
+
 from backend.db.sorting_logs_connector import create_sorting_logs
 from backend.service.array_generate.ArrayFactory import generate_number_array
-from backend.service.sorting.SortAlgorithmEnum import SortAlgorithmEnum
 from backend.service.sorting.SortAlgorithmSingleton import SortAlgorithmSingleton
 from entity.ArrayOrderEnum import ArrayOrderEnum
+from entity.SortAlgorithmEnum import SortAlgorithmEnum
 from entity.SortingLog import SortingLog
 
 
-def run_benchmark(min_val: int, max_val: int, size: int, order: ArrayOrderEnum):
+def run_benchmark(min_val: int, max_val: int, size: int, order: ArrayOrderEnum) \
+        -> List[SortingLog]:
     array = generate_number_array(min_val, max_val, size, order)
 
     def log_benchmark(algorithm: SortAlgorithmEnum) -> SortingLog:
@@ -22,3 +25,4 @@ def run_benchmark(min_val: int, max_val: int, size: int, order: ArrayOrderEnum):
 
     new_logs = [brick_log, bubble_log, cocktail_log, marge_log, quick_log, radix_log]
     create_sorting_logs(new_logs)
+    return new_logs

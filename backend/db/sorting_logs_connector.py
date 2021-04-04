@@ -1,7 +1,7 @@
 from typing import List
 
 from backend.db.Connector import Connector
-from backend.service.sorting.SortAlgorithmEnum import SortAlgorithmEnum
+from entity.SortAlgorithmEnum import SortAlgorithmEnum
 from entity.ArrayOrderEnum import ArrayOrderEnum
 from entity.SortingLog import SortingLog
 
