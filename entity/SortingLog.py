@@ -1,5 +1,5 @@
-from backend.entity.ArrayOrderEnum import ArrayOrderEnum
-from backend.entity.SortAlgorithmEnum import SortAlgorithmEnum
+from entity.ArrayOrderEnum import ArrayOrderEnum
+from backend.service.sorting.SortAlgorithmEnum import SortAlgorithmEnum
 
 
 class SortingLog(object):

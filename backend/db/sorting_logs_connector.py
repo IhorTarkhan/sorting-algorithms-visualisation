@@ -1,9 +1,9 @@
 from typing import List
 
 from backend.db.Connector import Connector
-from backend.entity.ArrayOrderEnum import ArrayOrderEnum
-from backend.entity.SortAlgorithmEnum import SortAlgorithmEnum
-from backend.entity.SortingLog import SortingLog
+from entity.ArrayOrderEnum import ArrayOrderEnum
+from backend.service.sorting.SortAlgorithmEnum import SortAlgorithmEnum
+from entity.SortingLog import SortingLog
 
 
 def create_table_if_not_exist():
