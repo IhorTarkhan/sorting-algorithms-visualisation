@@ -1,8 +1,8 @@
 from typing import List
 
 from backend.db.Connector import Connector
-from entity.ArrayOrderEnum import ArrayOrderEnum
 from backend.service.sorting.SortAlgorithmEnum import SortAlgorithmEnum
+from entity.ArrayOrderEnum import ArrayOrderEnum
 from entity.SortingLog import SortingLog
 
 
@@ -12,8 +12,8 @@ def create_table_if_not_exist():
                       'algorithm           VARCHAR(30) NOT NULL,' +
                       'initial_array_order VARCHAR(30) NOT NULL,' +
                       'array_size          INT         NOT NULL,' +
-                      'time_usage          INT         NOT NULL,' +
-                      'size_usage          INT         NOT NULL);')
+                      'time_usage          FLOAT       NOT NULL,' +
+                      'size_usage          FLOAT       NOT NULL);')
 
 
 def get_all_sorting_logs() -> List[SortingLog]:

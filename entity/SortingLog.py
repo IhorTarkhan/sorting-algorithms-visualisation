@@ -8,8 +8,8 @@ class SortingLog(object):
                  algorithm: SortAlgorithmEnum,
                  initial_array_order: ArrayOrderEnum,
                  array_size: int,
-                 time_usage: int,
-                 size_usage: int):
+                 time_usage: float,
+                 size_usage: float):
         self.log_id = log_id
         self.algorithm = algorithm
         self.initial_array_order = initial_array_order

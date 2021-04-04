@@ -1,27 +1,24 @@
-from entity.ArrayOrderEnum import ArrayOrderEnum
-from backend.service.sorting.SortAlgorithmEnum import SortAlgorithmEnum
+from backend.db.sorting_logs_connector import create_sorting_logs
 from backend.service.array_generate.ArrayFactory import generate_number_array
+from backend.service.sorting.SortAlgorithmEnum import SortAlgorithmEnum
 from backend.service.sorting.SortAlgorithmSingleton import SortAlgorithmSingleton
+from entity.ArrayOrderEnum import ArrayOrderEnum
+from entity.SortingLog import SortingLog
 
 
 def run_benchmark(min_val: int, max_val: int, size: int, order: ArrayOrderEnum):
     array = generate_number_array(min_val, max_val, size, order)
-    result = []
 
-    brick_result = SortAlgorithmSingleton.get_sorter(SortAlgorithmEnum.BRICK).benchmark(array)
-    print('brick\t', brick_result)
+    def log_benchmark(algorithm: SortAlgorithmEnum) -> SortingLog:
+        result = SortAlgorithmSingleton.get_sorter(algorithm).benchmark(array)
+        return SortingLog(None, SortAlgorithmEnum.BRICK, order, len(array), result.time_used, result.memory_used)
 
-    bubble_result = SortAlgorithmSingleton.get_sorter(SortAlgorithmEnum.BUBBLE).benchmark(array)
-    print('bubble\t', bubble_result)
+    brick_log = log_benchmark(SortAlgorithmEnum.BRICK)
+    bubble_log = log_benchmark(SortAlgorithmEnum.BUBBLE)
+    cocktail_log = log_benchmark(SortAlgorithmEnum.COCKTAIL)
+    marge_log = log_benchmark(SortAlgorithmEnum.MARGE)
+    quick_log = log_benchmark(SortAlgorithmEnum.QUICK)
+    radix_log = log_benchmark(SortAlgorithmEnum.RADIX)
 
-    cocktail_result = SortAlgorithmSingleton.get_sorter(SortAlgorithmEnum.COCKTAIL).benchmark(array)
-    print('cocktail', cocktail_result)
-
-    marge_result = SortAlgorithmSingleton.get_sorter(SortAlgorithmEnum.MARGE).benchmark(array)
-    print('marge\t', marge_result)
-
-    quick_result = SortAlgorithmSingleton.get_sorter(SortAlgorithmEnum.QUICK).benchmark(array)
-    print('quick\t', quick_result)
-
-    radix_result = SortAlgorithmSingleton.get_sorter(SortAlgorithmEnum.RADIX).benchmark(array)
-    print('radix\t', radix_result)
+    new_logs = [brick_log, bubble_log, cocktail_log, marge_log, quick_log, radix_log]
+    create_sorting_logs(new_logs)
