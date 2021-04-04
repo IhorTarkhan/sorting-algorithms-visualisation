@@ -11,14 +11,14 @@ def run_benchmark(min_val: int, max_val: int, size: int, order: ArrayOrderEnum):
 
     def log_benchmark(algorithm: SortAlgorithmEnum) -> SortingLog:
         result = SortAlgorithmSingleton.get_sorter(algorithm).benchmark(array)
-        return SortingLog(None, SortAlgorithmEnum.BRICK, order, len(array), result.time_used, result.memory_used)
+        return SortingLog(None, algorithm, order, size, result.time_used, result.memory_used)
 
     brick_log = log_benchmark(SortAlgorithmEnum.BRICK)
     bubble_log = log_benchmark(SortAlgorithmEnum.BUBBLE)
     cocktail_log = log_benchmark(SortAlgorithmEnum.COCKTAIL)
     marge_log = log_benchmark(SortAlgorithmEnum.MARGE)
     quick_log = log_benchmark(SortAlgorithmEnum.QUICK)
-    radix_log = log_benchmark(SortAlgorithmEnum.RADIX)
+    # radix_log = log_benchmark(SortAlgorithmEnum.RADIX)
 
-    new_logs = [brick_log, bubble_log, cocktail_log, marge_log, quick_log, radix_log]
+    new_logs = [brick_log, bubble_log, cocktail_log, marge_log, quick_log]
     create_sorting_logs(new_logs)
