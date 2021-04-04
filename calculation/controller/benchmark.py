@@ -1,8 +1,8 @@
 from typing import List
 
-from backend.db.sorting_logs_connector import create_sorting_logs, get_average_logs
-from backend.service.array_generate.ArrayFactory import generate_number_array
-from backend.service.sorting.SortAlgorithmSingleton import SortAlgorithmSingleton
+from calculation.db.sorting_logs_connector import create_sorting_logs, get_average_logs
+from calculation.service.array_generate.ArrayFactory import generate_number_array
+from calculation.service.sorting.SortAlgorithmSingleton import SortAlgorithmSingleton
 from entity.ArrayOrderEnum import ArrayOrderEnum
 from entity.SortAlgorithmEnum import SortAlgorithmEnum
 from entity.SortingLog import SortingLog
@@ -11,6 +11,10 @@ from entity.StatisticSortingResponse import StatisticSortingResponse
 
 def run_benchmark(min_val: int, max_val: int, size: int, order: ArrayOrderEnum) \
         -> List[SortingLog]:
+    """
+        This is endpoint for UI part. By this endpoint UI can interact with 'calculation' part
+
+    """
     array = generate_number_array(min_val, max_val, size, order)
 
     def log_benchmark(algorithm: SortAlgorithmEnum) -> SortingLog:

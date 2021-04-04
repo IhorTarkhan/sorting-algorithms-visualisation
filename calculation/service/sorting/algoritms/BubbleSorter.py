@@ -1,5 +1,5 @@
-from backend.util.PySorter import PySorter
-from backend.service.sorting.algoritms.AbstractSorter import AbstractSorter
+from calculation.util.PySorter import PySorter
+from calculation.service.sorting.algoritms.AbstractSorter import AbstractSorter
 
 
 class BubbleSorter(AbstractSorter):

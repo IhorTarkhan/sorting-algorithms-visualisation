@@ -1,5 +1,5 @@
-from backend.controller.benchmark import run_benchmark, get_statistic
-from backend.db.sorting_logs_connector import create_table_if_not_exist
+from calculation.controller.benchmark import run_benchmark, get_statistic
+from calculation.db.sorting_logs_connector import create_table_if_not_exist
 from entity.ArrayOrderEnum import ArrayOrderEnum
 
 if __import__('__main__'):

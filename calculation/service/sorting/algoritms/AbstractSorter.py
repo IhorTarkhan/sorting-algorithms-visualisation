@@ -4,7 +4,7 @@ import time
 from memory_profiler import memory_usage
 from sorting_techniques import pysort
 
-from backend.service.sorting.SorterResult import SorterResult
+from calculation.service.sorting.SorterResult import SorterResult
 
 
 def sorting_time(sort, initial_array):

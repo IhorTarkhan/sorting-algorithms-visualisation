@@ -1,11 +1,11 @@
 from entity.SortAlgorithmEnum import SortAlgorithmEnum
-from backend.service.sorting.algoritms.AbstractSorter import AbstractSorter
-from backend.service.sorting.algoritms.BrickSorter import BrickSorter
-from backend.service.sorting.algoritms.BubbleSorter import BubbleSorter
-from backend.service.sorting.algoritms.CocktailSorter import CocktailSorter
-from backend.service.sorting.algoritms.MargeSorter import MargeSorter
-from backend.service.sorting.algoritms.QuickSorter import QuickSorter
-from backend.service.sorting.algoritms.RadixSorter import RadixSorter
+from calculation.service.sorting.algoritms.AbstractSorter import AbstractSorter
+from calculation.service.sorting.algoritms.BrickSorter import BrickSorter
+from calculation.service.sorting.algoritms.BubbleSorter import BubbleSorter
+from calculation.service.sorting.algoritms.CocktailSorter import CocktailSorter
+from calculation.service.sorting.algoritms.MargeSorter import MargeSorter
+from calculation.service.sorting.algoritms.QuickSorter import QuickSorter
+from calculation.service.sorting.algoritms.RadixSorter import RadixSorter
 
 
 class SortAlgorithmSingleton:

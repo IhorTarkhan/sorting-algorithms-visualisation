@@ -1,7 +1,7 @@
 from typing import List
 
-from backend.db.AverageSortingLog import AverageSortingLog
-from backend.db.Connector import Connector
+from calculation.db.AverageSortingLog import AverageSortingLog
+from calculation.db.Connector import Connector
 from entity.ArrayOrderEnum import ArrayOrderEnum
 from entity.SortAlgorithmEnum import SortAlgorithmEnum
 from entity.SortingLog import SortingLog
