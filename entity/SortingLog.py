@@ -2,9 +2,9 @@ from entity.ArrayOrderEnum import ArrayOrderEnum
 from entity.SortAlgorithmEnum import SortAlgorithmEnum
 
 
-class SortingLog(object):
+class SortingLog:
     def __init__(self,
-                 log_id,
+                 log_id: int or None,
                  algorithm: SortAlgorithmEnum,
                  initial_array_order: ArrayOrderEnum,
                  array_size: int,
