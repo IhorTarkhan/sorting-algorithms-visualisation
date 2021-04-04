@@ -20,6 +20,15 @@ def sorting_size(sort, initial_array):
 
 
 class AbstractSorter:
+    """
+        Implementation Polymorphism (OOP)
+
+        ...
+
+        This class - is a wrapper over sorting method.
+        This class calculate time and memory-size usage of sorting algorithm
+    """
+
     def __init__(self, sort):
         self.sort = sort
 
