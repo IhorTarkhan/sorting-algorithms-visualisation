@@ -32,10 +32,29 @@ def get_all_sorting_logs() -> List[SortingLog]:
 
 def create_sorting_log(new_log: SortingLog):
     Connector.execute(
-        ('INSERT INTO sorting_logs (algorithm, initial_array_order, array_size, time_usage, size_usage) ' +
-         'VALUE (\'{}\', \'{}\', {}, {}, {});').format(
-            new_log.algorithm.value,
-            new_log.initial_array_order.value,
-            new_log.array_size,
-            new_log.time_usage,
-            new_log.size_usage))
+        'INSERT INTO sorting_logs (algorithm, initial_array_order, array_size, time_usage, size_usage) ' +
+        'VALUE ' + save_brackets_generate(new_log) + ';'
+    )
+
+
+def create_sorting_logs(new_logs: List[SortingLog]):
+    brackets = ''
+    length = len(new_logs)
+    for it in range(length):
+        brackets += save_brackets_generate(new_logs[it])
+        if it != length - 1:
+            brackets += ', '
+
+    Connector.execute(
+        'INSERT INTO sorting_logs (algorithm, initial_array_order, array_size, time_usage, size_usage) ' +
+        'VALUES ' + brackets + ';'
+    )
+
+
+def save_brackets_generate(log: SortingLog):
+    return '(\'{}\', \'{}\', {}, {}, {})'.format(
+        log.algorithm.value,
+        log.initial_array_order.value,
+        log.array_size,
+        log.time_usage,
+        log.size_usage)
