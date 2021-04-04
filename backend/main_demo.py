@@ -1,11 +1,11 @@
-from backend.array_generate.ArrayFactory import generate_number_array
-from backend.array_generate.ArrayOrderEnum import ArrayOrderEnum
-from sorting.algoritms.BrickSorter import BrickSorter
-from sorting.algoritms.BubbleSorter import BubbleSorter
-from sorting.algoritms.CocktailSorter import CocktailSorter
-from sorting.algoritms.MargeSorter import MargeSorter
-from sorting.algoritms.QuickSorter import QuickSorter
-from sorting.algoritms.RadixSorter import RadixSorter
+from backend.service.array_generate.ArrayFactory import generate_number_array
+from backend.service.array_generate.ArrayOrderEnum import ArrayOrderEnum
+from backend.service.sorting.algoritms.BrickSorter import BrickSorter
+from backend.service.sorting.algoritms.BubbleSorter import BubbleSorter
+from backend.service.sorting.algoritms.CocktailSorter import CocktailSorter
+from backend.service.sorting.algoritms.MargeSorter import MargeSorter
+from backend.service.sorting.algoritms.QuickSorter import QuickSorter
+from backend.service.sorting.algoritms.RadixSorter import RadixSorter
 
 if __import__('__main__'):
     array = generate_number_array(1, 1000, 100, ArrayOrderEnum.RANDOM)

@@ -3,7 +3,7 @@ import time
 
 from memory_profiler import memory_usage
 
-from backend.sorting.SorterResult import SorterResult
+from backend.service.sorting.SorterResult import SorterResult
 
 
 def sorting_time(sort, initial_array):

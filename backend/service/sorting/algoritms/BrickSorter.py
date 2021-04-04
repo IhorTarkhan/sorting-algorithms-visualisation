@@ -1,5 +1,5 @@
-from backend.sorting.SortingInstance import SortingInstance
-from backend.sorting.algoritms.AbstractSorter import AbstractSorter
+from backend.service.sorting.SortingInstance import SortingInstance
+from backend.service.sorting.algoritms.AbstractSorter import AbstractSorter
 
 
 class BrickSorter(AbstractSorter):
