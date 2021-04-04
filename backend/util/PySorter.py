@@ -3,7 +3,11 @@ from sorting_techniques import pysort
 
 class PySorter:
     """
+        Implementation of Singleton Mediator
 
+        ...
+
+        This is wrapped library class 'pysort' to avoid multiple re-creation of sorting instance
     """
     __instance = None
 

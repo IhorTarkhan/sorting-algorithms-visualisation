@@ -1,5 +1,6 @@
 from typing import List
 
+from backend.db.AverageSortingLog import AverageSortingLog
 from backend.db.Connector import Connector
 from entity.ArrayOrderEnum import ArrayOrderEnum
 from entity.SortAlgorithmEnum import SortAlgorithmEnum
@@ -69,24 +70,6 @@ def save_brackets_generate(log: SortingLog):
         log.array_size,
         log.time_usage,
         log.size_usage)
-
-
-class AverageSortingLog:
-    """
-        Entity to present average time and memory-size types of sorting
-    """
-
-    def __init__(self,
-                 algorithm: SortAlgorithmEnum,
-                 order: ArrayOrderEnum,
-                 size: int,
-                 avg_time: float,
-                 avg_size: float):
-        self.algorithm = algorithm
-        self.order = order
-        self.size = size
-        self.avg_time = avg_time
-        self.avg_size = avg_size
 
 
 def get_average_logs() -> List[AverageSortingLog]:
