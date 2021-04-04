@@ -1,8 +1,8 @@
 from sorting_techniques import pysort
 
 
-class SortingInstance:
-    __instance = None
+class PySorter:
+    __instance = pysort.Sorting()
 
     def __init__(self):
         raise PermissionError("Not permit to create object")
