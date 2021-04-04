@@ -8,4 +8,4 @@ if __import__('__main__'):
     for size in range(100):
         for iteration in range(100):
             print('size={};\t\titeration={}'.format(size, iteration))
-            run_benchmark(1, 100, 100, ArrayOrderEnum.RANDOM)
+            run_benchmark(1, 100, size, ArrayOrderEnum.RANDOM)
