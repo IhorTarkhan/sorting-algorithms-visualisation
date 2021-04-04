@@ -3,7 +3,9 @@ from entity.SortAlgorithmEnum import SortAlgorithmEnum
 
 
 class SortingLog:
-    """ The Entity that storage in database"""
+    """
+        The Entity that storage in database
+    """
 
     def __init__(self,
                  log_id: int or None,

@@ -2,9 +2,8 @@ import copy
 import time
 
 from memory_profiler import memory_usage
-from sorting_techniques import pysort
 
-from backend.service.sorting.SorterResult import SorterResult
+from calculation.service.sorting.SorterResult import SorterResult
 
 
 def sorting_time(sort, initial_array):
@@ -21,7 +20,14 @@ def sorting_size(sort, initial_array):
 
 
 class AbstractSorter:
-    __instance = pysort.Sorting()
+    """
+        Implementation Polymorphism (OOP)
+
+        ...
+
+        This class - is a wrapper over sorting method.
+        This class calculate time and memory-size usage of sorting algorithm
+    """
 
     def __init__(self, sort):
         self.sort = sort
