@@ -143,13 +143,56 @@ class MainVisual:
             item.render_checkbox()
         pg.display.flip()
 
-    def loading(self, one_sample_mode):
-        self.results.get_results(self.text, [x.checked for x in self.checkboxes])
+    def loading_screen(self,one_sample_mode):
+        import pygame
+
+        pygame.init()
+
+
+        white = (255, 255, 255)
+        green = (0, 255, 0)
+        blue = (0, 0, 128)
+
+
+        X = 400
+        Y = 400
+
+
+        display_surface = pygame.display.set_mode((X, Y))
+
+        pygame.display.set_caption('Show Loading')
+
+
+        font = pygame.font.Font('freesansbold.ttf', 32)
+
+        text = font.render('Please wait for results...', True, green, blue)
+
+        textRect = text.get_rect()
+
+        textRect.center = (X // 2, Y // 2)
+
+
+        display_surface.fill(white)
+
+
+        display_surface.blit(text, textRect)
+
+        self.make_graph(one_sample_mode)
+
+
+
+
+
+    def make_graph(self,one_sample_mode):
         graph = Graphs()
         if one_sample_mode:
             graph.one_sample_graph(self.results.one_sample_results())
         else:
             graph.different_algorythms_comparison(self.results.all_database_results())
+    def loading(self, one_sample_mode):
+        self.results.get_results(self.text, [x.checked for x in self.checkboxes])
+        self.loading_screen(one_sample_mode)
+
 
     def run(self):
         while not self.done:
