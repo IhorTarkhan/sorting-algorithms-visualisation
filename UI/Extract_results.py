@@ -19,5 +19,6 @@ class Extract_Results:
 
     def all_database_results(self):
         return get_statistic()
+
 # ANDRUHUS, PLEASE FORMAT CODE - ctrl + l
 # Bitte schön

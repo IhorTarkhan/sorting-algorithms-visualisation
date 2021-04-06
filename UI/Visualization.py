@@ -2,6 +2,7 @@ import pygame as pg
 import pygame_widgets as pw
 from UI.Extract_results import Extract_Results
 from UI.Check_box import Checkbox
+from UI.Graphs import Graphs
 
 
 # ANDRUHUS, PLEASE FORMAT CODE - ctrl + l
@@ -60,13 +61,22 @@ class MainVisual:
         ]
         self.checkboxes[0].checked = True
 
-        self.button = pw.Button(
-            self.screen, 220, 400, 100, 50, text='OK',
-            fontSize=18,
-            inactiveColour=self.color_inactive,
-            pressedColour=self.color_active,
-            onClick=lambda: self.results.get_results(self.text, [x.checked for x in self.checkboxes])
-        )
+        self.buttons = [
+            pw.Button(
+                self.screen, 150, 400, 100, 50, text='Run one sample',
+                fontSize=18,
+                inactiveColour=self.color_inactive,
+                pressedColour=self.color_active,
+                onClick=lambda: self.loading(True)
+            ),
+            pw.Button(
+                self.screen, 290, 400, 100, 50, text='Run benchmark',
+                fontSize=18,
+                inactiveColour=self.color_inactive,
+                pressedColour=self.color_active,
+                onClick=lambda: self.loading(False)
+            )
+        ]
 
     def update_checkboxes(self, event):
         previous_index = None
@@ -120,14 +130,26 @@ class MainVisual:
                               self.input_boxes[index].y + 5))
             pg.draw.rect(self.screen, self.color[index], self.input_boxes[index], 2)
 
+    def button_update(self, events):
+        for i in range(len(self.buttons)):
+            self.buttons[i].listen(events)
+            self.buttons[i].draw()
+
     def last_part(self, events):
         warning = self.font.render('The array will be always sorted in acsending order', True, self.color_active)
         self.screen.blit(warning, (50, 340))
-        self.button.listen(events)
-        self.button.draw()
+        self.button_update(events)
         for item in self.checkboxes:
             item.render_checkbox()
         pg.display.flip()
+
+    def loading(self, one_sample_mode):
+        self.results.get_results(self.text, [x.checked for x in self.checkboxes])
+        graph = Graphs()
+        if one_sample_mode:
+            graph.one_sample_graph(self.results.one_sample_results())
+        else:
+            graph.different_algorythms_comparison(self.results.all_database_results())
 
     def run(self):
         while not self.done:

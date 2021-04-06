@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from exper import a
+# from exper import a
 import numpy as np
 from entity.SortAlgorithmEnum import SortAlgorithmEnum
 
@@ -62,7 +62,12 @@ class Graphs:
         return res
 
     def split_by_fields(self, statistic):
-        asc_t, rand_t, desc_t, asc_m, rand_m, desc_m = []
+        asc_t = []
+        rand_t = []
+        desc_t = []
+        asc_m = []
+        rand_m = []
+        desc_m = []
         for item in statistic:
             if item.ascending_time != None:
                 asc_t.append((item.ascending_time, item.array_size))
@@ -80,7 +85,8 @@ class Graphs:
         return asc_t, rand_t, desc_t, asc_m, rand_m, desc_m
 
     def get_xy_array(self, array):
-        x, y = []
+        x = []
+        y = []
         for item in array:
             y.append(item[0])
             x.append(item[1])
@@ -95,6 +101,5 @@ class Graphs:
                 self.draw_a_line(x, y, self.colors[alg_index])
             plt.show()
 
-
-b = Graphs()
-b.one_sample_graph(a)
+# b = Graphs()
+# b.one_sample_graph(a)
