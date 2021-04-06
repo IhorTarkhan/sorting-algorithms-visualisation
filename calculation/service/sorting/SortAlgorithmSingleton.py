@@ -33,7 +33,7 @@ class SortAlgorithmSingleton:
             return cls.__bubbleSorter
         if algorithm is SortAlgorithmEnum.COCKTAIL:
             return cls.__cocktailSorter
-        if algorithm is SortAlgorithmEnum.MARGE:
+        if algorithm is SortAlgorithmEnum.MERGE:
             return cls.__margeSorter
         if algorithm is SortAlgorithmEnum.QUICK:
             return cls.__quickSorter

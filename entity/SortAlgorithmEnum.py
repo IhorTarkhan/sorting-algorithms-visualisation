@@ -8,6 +8,6 @@ class SortAlgorithmEnum(Enum):
     BRICK = 'BRICK'
     BUBBLE = 'BUBBLE'
     COCKTAIL = 'COCKTAIL'
-    MARGE = 'MARGE'
+    MERGE = 'MERGE'
     QUICK = 'QUICK'
     RADIX = 'RADIX'

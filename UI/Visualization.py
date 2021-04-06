@@ -152,7 +152,7 @@ class MainVisual:
             self.last_part(events)
 
 
-def main():
+'''def main():
     screen = pg.display.set_mode((640, 480))
 
     font = pg.font.Font(None, 32)
@@ -184,7 +184,7 @@ def main():
         font_size=32
     )
 
-    button = Button(
+    button = pw.Button(
         screen, 220, 350, 100, 50, text='OK',
         fontSize=18,
         inactiveColour=color_inactive,
@@ -237,4 +237,4 @@ def main():
         button.listen(events)
         button.draw()
         chkbox.render_checkbox()
-        pg.display.flip()
+        pg.display.flip()'''
