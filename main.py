@@ -1,6 +1,7 @@
 import pygame as pg
-from UI.Visualization import main
+from UI.Visualization import MainVisual
 
 pg.init()
-main()
+ui = MainVisual()
+ui.run()
 pg.quit()
