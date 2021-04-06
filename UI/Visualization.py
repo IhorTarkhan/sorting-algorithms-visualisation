@@ -1,5 +1,5 @@
 import pygame as pg
-from pygame_widgets import Button
+import pygame_widgets as pw
 from UI.Extract_results import Extract_Results
 from UI.Check_box import Checkbox
 
@@ -60,7 +60,7 @@ class MainVisual:
         ]
         self.checkboxes[0].checked = True
 
-        self.button = Button(
+        self.button = pw.Button(
             self.screen, 220, 400, 100, 50, text='OK',
             fontSize=18,
             inactiveColour=self.color_inactive,
