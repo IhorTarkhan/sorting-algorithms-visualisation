@@ -194,22 +194,23 @@ class MainVisual:
         if one_sample_mode:
             try:
                 sample_data = self.results.one_sample_results()
+                graph.one_sample_graph(sample_data)
             except:
                 red = (255, 0, 0)
                 pg.init()
                 self.screen_with_text('Value Error', red, True)
                 pg.quit()
 
-            graph.one_sample_graph()
+
         else:
             try:
                 sample_data = self.results.all_database_results()
+                graph.different_algorythms_comparison(sample_data)
             except:
                 red = (255, 0, 0)
                 pg.init()
                 self.screen_with_text('Value Error', red, True)
                 pg.quit()
-            graph.different_algorythms_comparison(sample_data)
 
     def loading(self, one_sample_mode):
         self.results.get_results(self.text, [x.checked for x in self.checkboxes])
