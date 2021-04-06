@@ -7,13 +7,21 @@ from entity.SortAlgorithmEnum import SortAlgorithmEnum
 
 class Graphs:
     def __init__(self):
-        self.labels = [
+        self.alg_labels = [
             'Brick',
             'Bubble',
             'Cocktail',
             'Merge',
             'Quick',
             'Insertion'
+        ]
+        self.field_labels = [
+            'Ascending order time(ms)',
+            'Random order time(ms)',
+            'Descending order time(ms)',
+            'Ascending order size(CU)',
+            'Random order size(CU)',
+            'Descending order size(CU)'
         ]
         self.main_label = 'Algorythms'
 
@@ -22,12 +30,12 @@ class Graphs:
         ]
 
     def draw_hist(self, y, color, label):
-        pos = np.arange(len(self.labels))
+        pos = np.arange(len(self.alg_labels))
         width = 0.8
         # gives histogram aspect to the bar diagram
         ax = plt.axes()
         ax.set_xticks(pos)
-        ax.set_xticklabels(self.labels)
+        ax.set_xticklabels(self.alg_labels)
 
         plt.bar(pos, y, width, color=color)
         plt.xlabel(self.main_label)
@@ -40,8 +48,8 @@ class Graphs:
         self.draw_hist(times, 'b', 'Time spent(ms)')
         self.draw_hist(memory, 'g', 'Memory usage(CU)')
 
-    def draw_a_line(self, x, y, y_label):
-        plt.plot(x, y, y_label)
+    def draw_a_line(self, x, y, y_label, some_label):
+        plt.plot(x, y, y_label, label=some_label)
 
     def split_by_algorythms(self, statistic, index):
         def get_proper_field(object, index):
@@ -59,7 +67,7 @@ class Graphs:
                 return object.descending_size
 
         res = []
-        for alg in range(len(self.labels)):
+        for alg in range(len(self.alg_labels)):
             res.append([])
         for item in statistic:
             if item.algorithm == SortAlgorithmEnum.BRICK:
@@ -109,13 +117,17 @@ class Graphs:
 
     def different_algorythms_comparison(self, statistic_sorting_result):
         graphs = {}
-        graphs[self.labels[0]], graphs[self.labels[1]], graphs[self.labels[2]], graphs[self.labels[3]], graphs[
-            self.labels[4]], graphs[self.labels[5]] = self.split_by_fields(statistic_sorting_result)
+        graphs[self.alg_labels[0]], graphs[self.alg_labels[1]], graphs[self.alg_labels[2]], graphs[self.alg_labels[3]], \
+        graphs[
+            self.alg_labels[4]], graphs[self.alg_labels[5]] = self.split_by_fields(statistic_sorting_result)
         for i in range(6):
-            graphs_separated = self.split_by_algorythms(graphs[self.labels[i]], i)
+            graphs_separated = self.split_by_algorythms(graphs[self.alg_labels[i]], i)
             for alg in range(len(graphs_separated)):
                 x, y = self.get_xy_array(graphs_separated[alg])
-                self.draw_a_line(x, y, self.colors[alg])
+                self.draw_a_line(x, y, self.colors[alg], self.alg_labels[alg])
+                plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
+            plt.xlabel('Number of elements')
+            plt.ylabel(self.field_labels[i])
             plt.show()
 
         '''graphs = [self.split_by_fields(statistic_sorting_result)]
@@ -125,7 +137,6 @@ class Graphs:
                 x, y = self.get_xy_array(graphs_separated[alg_index])
                 self.draw_a_line(x, y, self.colors[alg_index])
             plt.show()'''
-
 
 # b = Graphs()
 # b.different_algorythms_comparison(c)
