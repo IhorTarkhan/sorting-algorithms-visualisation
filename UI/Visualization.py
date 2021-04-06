@@ -31,20 +31,48 @@ class MainVisual:
         self.active = [False, False, False]
         self.text = ['', '', '']
         self.done = False
-        self.chkbox = Checkbox(
+
+        self.checkboxes = [
+            Checkbox(
             self.screen, 150, 230,
-            caption='Randomize', color=self.color_inactive,
-            text_offset=(75, 0), font_color=self.color_inactive,
+            caption='Ascending initial order', color=self.color_inactive,
+            text_offset=(135, 0), font_color=self.color_inactive,
             font_size=32
-        )
+            ),
+            Checkbox(
+                self.screen, 150, 270,
+                caption='Descending initial order', color=self.color_inactive,
+                text_offset=(140, 0), font_color=self.color_inactive,
+                font_size=32
+            ),
+            Checkbox(
+                self.screen, 150, 310,
+                caption='Random initial order', color=self.color_inactive,
+                text_offset=(125, 0), font_color=self.color_inactive,
+                font_size=32
+            )
+        ]
 
         self.button = Button(
-            self.screen, 220, 350, 100, 50, text='OK',
+            self.screen, 220, 400, 100, 50, text='OK',
             fontSize=18,
             inactiveColour=self.color_inactive,
             pressedColour=self.color_active,
-            onClick=lambda: get_results(self.text, self.chkbox.checked)
+            onClick=lambda: get_results(self.text, [x.checked for x in self.checkboxes])
         )
+    def update_checkboxes(self,event):
+        previous_index = None
+        for index in range(3):
+            if self.checkboxes[index].checked:
+                previous_index = index
+        for index in range(3):
+            self.checkboxes[index].update_checkbox(event)
+        count_of_active_checkbox = 0
+        for index in range(3):
+            if self.checkboxes[index].checked:
+                count_of_active_checkbox += 1
+        if count_of_active_checkbox > 1 and not previous_index == None:
+            self.checkboxes[previous_index].checked = False
 
     def mouse_event(self,event):
         for index in range(3):
@@ -79,10 +107,11 @@ class MainVisual:
 
     def last_part(self,events):
         warning = self.font.render('The array will be always sorted in acsending order', True, self.color_active)
-        self.screen.blit(warning, (50, 280))
+        self.screen.blit(warning, (50, 340))
         self.button.listen(events)
         self.button.draw()
-        self.chkbox.render_checkbox()
+        for item in self.checkboxes:
+            item.render_checkbox()
         pg.display.flip()
 
     def run(self):
@@ -97,7 +126,7 @@ class MainVisual:
                 if event.type == pg.KEYDOWN:
                     self.key_event(event)
 
-                self.chkbox.update_checkbox(event)
+                self.update_checkboxes(event)
             self.screen.fill((30, 30, 30))
             # Render the current text.
             txt_surface_for_input_boxes = []
