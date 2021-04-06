@@ -143,56 +143,77 @@ class MainVisual:
             item.render_checkbox()
         pg.display.flip()
 
-    def loading_screen(self,one_sample_mode):
-        import pygame
-
-        pygame.init()
-
+    def screen_with_text(self, text, color, error_mode):
 
         white = (255, 255, 255)
-        green = (0, 255, 0)
-        blue = (0, 0, 128)
 
+        blue = (0, 0, 128)
 
         X = 400
         Y = 400
 
+        display_surface = pg.display.set_mode((X, Y))
 
-        display_surface = pygame.display.set_mode((X, Y))
+        pg.display.set_caption('Show Loading')
 
-        pygame.display.set_caption('Show Loading')
+        font = pg.font.Font('freesansbold.ttf', 20)
 
-
-        font = pygame.font.Font('freesansbold.ttf', 32)
-
-        text = font.render('Please wait for results...', True, green, blue)
+        text = font.render(text, True, color, blue)
 
         textRect = text.get_rect()
 
         textRect.center = (X // 2, Y // 2)
 
+        if error_mode:
+            done = False
+            while not done:
+                display_surface.fill(white)
 
-        display_surface.fill(white)
+                display_surface.blit(text, textRect)
+                events = pg.event.get()
+                for event in events:
+                    if event.type == pg.QUIT or event.type == pg.MOUSEBUTTONDOWN:
+                        done = True
+                    pg.display.update()
+        else:
+            display_surface.fill(white)
 
+            display_surface.blit(text, textRect)
+            pg.display.update()
 
-        display_surface.blit(text, textRect)
+    def loading_screen(self, one_sample_mode):
 
+        green = (0, 255, 0)
+        pg.init()
+        self.screen_with_text('Please wait for results...', green, False)
+        pg.quit()
         self.make_graph(one_sample_mode)
 
-
-
-
-
-    def make_graph(self,one_sample_mode):
+    def make_graph(self, one_sample_mode):
         graph = Graphs()
         if one_sample_mode:
-            graph.one_sample_graph(self.results.one_sample_results())
+            try:
+                sample_data = self.results.one_sample_results()
+            except:
+                red = (255, 0, 0)
+                pg.init()
+                self.screen_with_text('Value Error', red, True)
+                pg.quit()
+
+            graph.one_sample_graph()
         else:
-            graph.different_algorythms_comparison(self.results.all_database_results())
+            try:
+                sample_data = self.results.all_database_results()
+            except:
+                red = (255, 0, 0)
+                pg.init()
+                self.screen_with_text('Value Error', red, True)
+                pg.quit()
+            graph.different_algorythms_comparison(sample_data)
+
     def loading(self, one_sample_mode):
         self.results.get_results(self.text, [x.checked for x in self.checkboxes])
         self.loading_screen(one_sample_mode)
-
 
     def run(self):
         while not self.done:

@@ -1,4 +1,4 @@
-#from calculation.controller.benchmark import run_benchmark, get_statistic
+from calculation.controller.benchmark import run_benchmark, get_statistic
 from entity.ArrayOrderEnum import ArrayOrderEnum
 
 
@@ -15,11 +15,10 @@ class Extract_Results:
             self.order = ArrayOrderEnum.ASC
 
     def one_sample_results(self):
-        #return run_benchmark(self.min, self.max, self.quantity, self.order)
-        pass
+        return run_benchmark(self.min, self.max, self.quantity, self.order)
 
     def all_database_results(self):
-        #return get_statistic()
-        pass
+        return get_statistic()
+
 # ANDRUHUS, PLEASE FORMAT CODE - ctrl + l
 # Bitte schön
