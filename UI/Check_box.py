@@ -19,8 +19,9 @@ class Checkbox:
         self.fs = font_size
         self.fc = font_color
         self.to = text_offset
+        self.rec_size = 18
         # checkbox object
-        self.checkbox_obj = pg.Rect(self.x, self.y, 18, 18)
+        self.checkbox_obj = pg.Rect(self.x, self.y, self.rec_size, self.rec_size)
         self.checkbox_outline = self.checkbox_obj.copy()
         # variables to test the different states of the checkbox
         self.checked = False
@@ -32,7 +33,8 @@ class Checkbox:
         self.font = pg.font.Font(None, self.fs)
         self.font_surf = self.font.render(self.caption, True, self.fc)
         w, h = self.font.size(self.caption)
-        self.font_pos = (self.x + 18 / 2 - w / 2 + self.to[0], self.y + 18 / 2 - h / 2 + self.to[1])
+        self.font_pos = (
+            self.x + self.rec_size / 2 - w / 2 + self.to[0], self.y + self.rec_size / 2 - h / 2 + self.to[1])
         self.surface.blit(self.font_surf, self.font_pos)
 
     def render_checkbox(self):
@@ -73,7 +75,7 @@ class Checkbox:
         if event_object.type == pg.MOUSEBUTTONDOWN:
             x, y = event_object.pos
             px, py, w, h = self.checkbox_obj
-            if px < x < px + w and px < x < px + w:
+            if px < x < px + w and py < y < py + h:
                 self.checked = not self.checked
             # print(self.checked)
 
