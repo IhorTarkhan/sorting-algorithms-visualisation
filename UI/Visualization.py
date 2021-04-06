@@ -1,7 +1,8 @@
 import pygame as pg
 from pygame_widgets import Button
-from UI.Extract_results import get_results
+from UI.Extract_results import Extract_Results
 from UI.Check_box import Checkbox
+
 
 # ANDRUHUS, PLEASE FORMAT CODE - ctrl + l
 # Bitte schön
@@ -10,7 +11,8 @@ from UI.Check_box import Checkbox
 # TODO add two asc and desc gener arr ord
 
 class MainVisual:
-    def __init__(self):
+    def __init__(self, results):
+        self.results = results
         self.screen = pg.display.set_mode((640, 480))
 
         self.font = pg.font.Font(None, 32)
@@ -63,7 +65,7 @@ class MainVisual:
             fontSize=18,
             inactiveColour=self.color_inactive,
             pressedColour=self.color_active,
-            onClick=lambda: get_results(self.text, [x.checked for x in self.checkboxes])
+            onClick=lambda: self.results.get_results(self.text, [x.checked for x in self.checkboxes])
         )
 
     def update_checkboxes(self, event):
@@ -127,7 +129,7 @@ class MainVisual:
             item.render_checkbox()
         pg.display.flip()
 
-    def run(self):
+    def run(self, results):
         while not self.done:
             events = pg.event.get()
             for event in events:

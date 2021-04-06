@@ -1,5 +1,8 @@
 from typing import List
+import sys
 
+# insert at 1, 0 is the script path (or '' in REPL)
+sys.path.insert(1, 'C:/Users/aaade/Desktop/programs/OOP/sorting-algorithms-visualisation')
 from calculation.db.sorting_logs_connector import create_sorting_logs, get_average_logs
 from calculation.service.array_generate.ArrayFactory import generate_number_array
 from calculation.service.sorting.SortAlgorithmSingleton import SortAlgorithmSingleton
