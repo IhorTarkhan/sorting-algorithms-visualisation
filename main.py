@@ -1,6 +1,10 @@
 import pygame as pg
-from UI.Visualization import MainVisual
+
 from UI.Extract_results import Extract_Results
+from UI.Visualization import MainVisual
+from calculation.db.sorting_logs_connector import create_table_if_not_exist
+
+create_table_if_not_exist()
 
 results = Extract_Results()
 

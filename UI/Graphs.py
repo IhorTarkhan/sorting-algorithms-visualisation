@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 # from exper import a
 import numpy as np
+
 from entity.SortAlgorithmEnum import SortAlgorithmEnum
 
 
@@ -12,7 +13,7 @@ class Graphs:
             'Cocktail',
             'Merge',
             'Quick',
-            'Radix'
+            'Insertion'
         ]
         self.main_label = 'Algorythms'
 

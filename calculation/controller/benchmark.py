@@ -1,5 +1,5 @@
-from typing import List
 import sys
+from typing import List
 
 # insert at 1, 0 is the script path (or '' in REPL)
 sys.path.insert(1, 'C:/Users/aaade/Desktop/programs/OOP/sorting-algorithms-visualisation')
@@ -39,9 +39,9 @@ def run_benchmark(min_val: int, max_val: int, size: int, order: ArrayOrderEnum) 
     cocktail_log = log_benchmark(SortAlgorithmEnum.COCKTAIL)
     marge_log = log_benchmark(SortAlgorithmEnum.MERGE)
     quick_log = log_benchmark(SortAlgorithmEnum.QUICK)
-    radix_log = log_benchmark(SortAlgorithmEnum.RADIX)
+    insertion_log = log_benchmark(SortAlgorithmEnum.INSERTION)
 
-    new_logs = [brick_log, bubble_log, cocktail_log, marge_log, quick_log, radix_log]
+    new_logs = [brick_log, bubble_log, cocktail_log, marge_log, quick_log, insertion_log]
     create_sorting_logs(new_logs)
     return new_logs
 

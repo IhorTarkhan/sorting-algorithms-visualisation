@@ -10,4 +10,4 @@ class SortAlgorithmEnum(Enum):
     COCKTAIL = 'COCKTAIL'
     MERGE = 'MERGE'
     QUICK = 'QUICK'
-    RADIX = 'RADIX'
+    INSERTION = 'INSERTION'
