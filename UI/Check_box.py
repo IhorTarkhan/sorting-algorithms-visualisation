@@ -30,7 +30,8 @@ class Checkbox:
         self.font = pg.font.Font(None, self.fs)
         self.font_surf = self.font.render(self.caption, True, self.fc)
         w, h = self.font.size(self.caption)
-        self.font_pos = (self.x + self.rec_size / 2 - w / 2 + self.to[0], self.y + self.rec_size / 2 - h / 2 + self.to[1])
+        self.font_pos = (
+            self.x + self.rec_size / 2 - w / 2 + self.to[0], self.y + self.rec_size / 2 - h / 2 + self.to[1])
         self.surface.blit(self.font_surf, self.font_pos)
 
     def render_checkbox(self):
