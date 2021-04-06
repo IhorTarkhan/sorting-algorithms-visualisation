@@ -1,7 +1,9 @@
 import pygame as pg
-from pygame_widgets import Button
-from UI.Extract_results import get_results
+import pygame_widgets as pw
+from UI.Extract_results import Extract_Results
 from UI.Check_box import Checkbox
+from UI.Graphs import Graphs
+
 
 # ANDRUHUS, PLEASE FORMAT CODE - ctrl + l
 # Bitte schön
@@ -10,7 +12,8 @@ from UI.Check_box import Checkbox
 # TODO add two asc and desc gener arr ord
 
 class MainVisual:
-    def __init__(self):
+    def __init__(self, results):
+        self.results = results
         self.screen = pg.display.set_mode((640, 480))
 
         self.font = pg.font.Font(None, 32)
@@ -58,13 +61,22 @@ class MainVisual:
         ]
         self.checkboxes[0].checked = True
 
-        self.button = Button(
-            self.screen, 220, 400, 100, 50, text='OK',
-            fontSize=18,
-            inactiveColour=self.color_inactive,
-            pressedColour=self.color_active,
-            onClick=lambda: get_results(self.text, [x.checked for x in self.checkboxes])
-        )
+        self.buttons = [
+            pw.Button(
+                self.screen, 150, 400, 100, 50, text='Run one sample',
+                fontSize=18,
+                inactiveColour=self.color_inactive,
+                pressedColour=self.color_active,
+                onClick=lambda: self.loading(True)
+            ),
+            pw.Button(
+                self.screen, 290, 400, 100, 50, text='Run benchmark',
+                fontSize=18,
+                inactiveColour=self.color_inactive,
+                pressedColour=self.color_active,
+                onClick=lambda: self.loading(False)
+            )
+        ]
 
     def update_checkboxes(self, event):
         previous_index = None
@@ -118,14 +130,91 @@ class MainVisual:
                               self.input_boxes[index].y + 5))
             pg.draw.rect(self.screen, self.color[index], self.input_boxes[index], 2)
 
+    def button_update(self, events):
+        for i in range(len(self.buttons)):
+            self.buttons[i].listen(events)
+            self.buttons[i].draw()
+
     def last_part(self, events):
         warning = self.font.render('The array will be always sorted in acsending order', True, self.color_active)
         self.screen.blit(warning, (50, 340))
-        self.button.listen(events)
-        self.button.draw()
+        self.button_update(events)
         for item in self.checkboxes:
             item.render_checkbox()
         pg.display.flip()
+
+    def screen_with_text(self, text, color, error_mode):
+
+        white = (255, 255, 255)
+
+        blue = (0, 0, 128)
+
+        X = 400
+        Y = 400
+
+        display_surface = pg.display.set_mode((X, Y))
+
+        pg.display.set_caption('Show Loading')
+
+        font = pg.font.Font('freesansbold.ttf', 20)
+
+        text = font.render(text, True, color, blue)
+
+        textRect = text.get_rect()
+
+        textRect.center = (X // 2, Y // 2)
+
+        if error_mode:
+            done = False
+            while not done:
+                display_surface.fill(white)
+
+                display_surface.blit(text, textRect)
+                events = pg.event.get()
+                for event in events:
+                    if event.type == pg.QUIT or event.type == pg.MOUSEBUTTONDOWN:
+                        done = True
+                    pg.display.update()
+        else:
+            display_surface.fill(white)
+
+            display_surface.blit(text, textRect)
+            pg.display.update()
+
+    def loading_screen(self, one_sample_mode):
+
+        green = (0, 255, 0)
+        pg.init()
+        self.screen_with_text('Please wait for results...', green, False)
+        pg.quit()
+        self.make_graph(one_sample_mode)
+
+    def make_graph(self, one_sample_mode):
+        graph = Graphs()
+        if one_sample_mode:
+            try:
+                sample_data = self.results.one_sample_results()
+                graph.one_sample_graph(sample_data)
+            except:
+                red = (255, 0, 0)
+                pg.init()
+                self.screen_with_text('Value Error', red, True)
+                pg.quit()
+
+
+        else:
+            try:
+                sample_data = self.results.all_database_results()
+                graph.different_algorythms_comparison(sample_data)
+            except:
+                red = (255, 0, 0)
+                pg.init()
+                self.screen_with_text('Value Error', red, True)
+                pg.quit()
+
+    def loading(self, one_sample_mode):
+        self.results.get_results(self.text, [x.checked for x in self.checkboxes])
+        self.loading_screen(one_sample_mode)
 
     def run(self):
         while not self.done:
@@ -150,7 +239,7 @@ class MainVisual:
             self.last_part(events)
 
 
-def main():
+'''def main():
     screen = pg.display.set_mode((640, 480))
 
     font = pg.font.Font(None, 32)
@@ -182,7 +271,7 @@ def main():
         font_size=32
     )
 
-    button = Button(
+    button = pw.Button(
         screen, 220, 350, 100, 50, text='OK',
         fontSize=18,
         inactiveColour=color_inactive,
@@ -235,4 +324,4 @@ def main():
         button.listen(events)
         button.draw()
         chkbox.render_checkbox()
-        pg.display.flip()
+        pg.display.flip()'''

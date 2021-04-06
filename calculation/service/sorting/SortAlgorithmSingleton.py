@@ -2,9 +2,9 @@ from calculation.service.sorting.algoritms.AbstractSorter import AbstractSorter
 from calculation.service.sorting.algoritms.BrickSorter import BrickSorter
 from calculation.service.sorting.algoritms.BubbleSorter import BubbleSorter
 from calculation.service.sorting.algoritms.CocktailSorter import CocktailSorter
+from calculation.service.sorting.algoritms.InsertionSorter import InsertionSorter
 from calculation.service.sorting.algoritms.MargeSorter import MargeSorter
 from calculation.service.sorting.algoritms.QuickSorter import QuickSorter
-from calculation.service.sorting.algoritms.RadixSorter import RadixSorter
 from entity.SortAlgorithmEnum import SortAlgorithmEnum
 
 
@@ -23,7 +23,7 @@ class SortAlgorithmSingleton:
     __cocktailSorter = CocktailSorter()
     __margeSorter = MargeSorter()
     __quickSorter = QuickSorter()
-    __radixSorter = RadixSorter()
+    __insertionSorter = InsertionSorter()
 
     @classmethod
     def get_sorter(cls, algorithm: SortAlgorithmEnum) -> AbstractSorter:
@@ -33,10 +33,10 @@ class SortAlgorithmSingleton:
             return cls.__bubbleSorter
         if algorithm is SortAlgorithmEnum.COCKTAIL:
             return cls.__cocktailSorter
-        if algorithm is SortAlgorithmEnum.MARGE:
+        if algorithm is SortAlgorithmEnum.MERGE:
             return cls.__margeSorter
         if algorithm is SortAlgorithmEnum.QUICK:
             return cls.__quickSorter
-        if algorithm is SortAlgorithmEnum.RADIX:
-            return cls.__radixSorter
+        if algorithm is SortAlgorithmEnum.INSERTION:
+            return cls.__insertionSorter
         raise ValueError('"order" value is not supported')
