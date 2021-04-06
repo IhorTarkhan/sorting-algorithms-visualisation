@@ -129,7 +129,7 @@ class MainVisual:
             item.render_checkbox()
         pg.display.flip()
 
-    def run(self, results):
+    def run(self):
         while not self.done:
             events = pg.event.get()
             for event in events:
