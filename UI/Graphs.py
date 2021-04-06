@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-# from exper import a
+# from exper import c
 import numpy as np
 
 from entity.SortAlgorithmEnum import SortAlgorithmEnum
@@ -18,7 +18,7 @@ class Graphs:
         self.main_label = 'Algorythms'
 
         self.colors = [
-            'bo', 'go', 'ro', 'yo', 'co', 'ko'
+            'b', 'g', 'r', 'y', 'c', 'k'
         ]
 
     def draw_hist(self, y, color, label):
@@ -108,13 +108,24 @@ class Graphs:
         return x, y
 
     def different_algorythms_comparison(self, statistic_sorting_result):
-        graphs = [self.split_by_fields(statistic_sorting_result)]
+        graphs = {}
+        graphs[self.labels[0]], graphs[self.labels[1]], graphs[self.labels[2]], graphs[self.labels[3]], graphs[
+            self.labels[4]], graphs[self.labels[5]] = self.split_by_fields(statistic_sorting_result)
+        for i in range(6):
+            graphs_separated = self.split_by_algorythms(graphs[self.labels[i]], i)
+            for alg in range(len(graphs_separated)):
+                x, y = self.get_xy_array(graphs_separated[alg])
+                self.draw_a_line(x, y, self.colors[alg])
+            plt.show()
+
+        '''graphs = [self.split_by_fields(statistic_sorting_result)]
         for graph_index in range(len(graphs)):
-            graphs_separated = self.split_by_algorythms(graphs[graph_index])
+            graphs_separated = self.split_by_algorythms(graphs[graph_index],graph_index)
             for alg_index in range(len(graphs_separated)):
                 x, y = self.get_xy_array(graphs_separated[alg_index])
                 self.draw_a_line(x, y, self.colors[alg_index])
-            plt.show()
+            plt.show()'''
+
 
 # b = Graphs()
-# b.one_sample_graph(a)
+# b.different_algorythms_comparison(c)
