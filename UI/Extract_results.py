@@ -3,3 +3,8 @@ def get_results(inputs, active):
         print(item)
     for item in active:
         print(item)
+
+
+# ANDRUHUS, PLEASE FORMAT CODE - ctrl + l
+# Bitte schön
+

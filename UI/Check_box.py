@@ -2,6 +2,9 @@ import pygame as pg
 
 pg.init()
 
+# ANDRUHUS, PLEASE FORMAT CODE - ctrl + l
+# Bitte schön
+
 
 class Checkbox:
     def __init__(self, surface, x, y, color=(230, 230, 230), caption="", outline_color=(0, 0, 0),
