@@ -125,7 +125,7 @@ class Graphs:
             for alg in range(len(graphs_separated)):
                 x, y = self.get_xy_array(graphs_separated[alg])
                 self.draw_a_line(x, y, self.colors[alg], self.alg_labels[alg])
-                plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left', borderaxespad=0.)
+                plt.legend(bbox_to_anchor=(1, 0.1), loc='upper right', borderaxespad=-5)
             plt.xlabel('Number of elements')
             plt.ylabel(self.field_labels[i])
             plt.show()
