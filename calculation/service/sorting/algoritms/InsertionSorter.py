@@ -2,7 +2,7 @@ from calculation.service.sorting.algoritms.AbstractSorter import AbstractSorter
 from calculation.util.PySorter import PySorter
 
 
-class RadixSorter(AbstractSorter):
+class InsertionSorter(AbstractSorter):
     """
         Implementation Mediator Pattern
 
@@ -13,4 +13,4 @@ class RadixSorter(AbstractSorter):
     """
 
     def __init__(self):
-        super().__init__(lambda array: PySorter.get_instance().radixSort(array))
+        super().__init__(lambda array: PySorter.get_instance().insertionSort(array))

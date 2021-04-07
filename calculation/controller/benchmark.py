@@ -1,5 +1,8 @@
+import sys
 from typing import List
 
+# insert at 1, 0 is the script path (or '' in REPL)
+sys.path.insert(1, 'C:/Users/aaade/Desktop/programs/OOP/sorting-algorithms-visualisation')
 from calculation.db.sorting_logs_connector import create_sorting_logs, get_average_logs
 from calculation.service.array_generate.ArrayFactory import generate_number_array
 from calculation.service.sorting.SortAlgorithmSingleton import SortAlgorithmSingleton
@@ -34,11 +37,11 @@ def run_benchmark(min_val: int, max_val: int, size: int, order: ArrayOrderEnum) 
     brick_log = log_benchmark(SortAlgorithmEnum.BRICK)
     bubble_log = log_benchmark(SortAlgorithmEnum.BUBBLE)
     cocktail_log = log_benchmark(SortAlgorithmEnum.COCKTAIL)
-    marge_log = log_benchmark(SortAlgorithmEnum.MARGE)
+    marge_log = log_benchmark(SortAlgorithmEnum.MERGE)
     quick_log = log_benchmark(SortAlgorithmEnum.QUICK)
-    radix_log = log_benchmark(SortAlgorithmEnum.RADIX)
+    insertion_log = log_benchmark(SortAlgorithmEnum.INSERTION)
 
-    new_logs = [brick_log, bubble_log, cocktail_log, marge_log, quick_log, radix_log]
+    new_logs = [brick_log, bubble_log, cocktail_log, marge_log, quick_log, insertion_log]
     create_sorting_logs(new_logs)
     return new_logs
 
@@ -70,13 +73,13 @@ def get_statistic() -> List[StatisticSortingResponse]:
             match_one = match_one_list[0]
 
         if log.order == ArrayOrderEnum.ASC:
-            match_one.best_time = log.avg_time
-            match_one.best_size = log.avg_size
+            match_one.ascending_time = log.avg_time
+            match_one.ascending_size = log.avg_size
         elif log.order == ArrayOrderEnum.RANDOM:
-            match_one.average_time = log.avg_time
-            match_one.average_size = log.avg_size
+            match_one.random_time = log.avg_time
+            match_one.random_size = log.avg_size
         elif log.order == ArrayOrderEnum.DESC:
-            match_one.worst_time = log.avg_time
-            match_one.worst_size = log.avg_size
+            match_one.descending_time = log.avg_time
+            match_one.descending_size = log.avg_size
 
     return response_list
