@@ -4,14 +4,27 @@
 
 ### Small desktop application to real-life demonstrate complexity of sorting algorithms.
 
-Andruhus, Please describe our project, I already wrote a lot of nonsense for today, it's your turn
+The file where the program starts: main.py
 
-Andruhus...
+Here you can see a form, where you can input the parameters of the array (min, max, array size and if it is preordered in some way) which is going to be sorted by six algorithms
 
-Andruhus..............
+Six algorithms we used: 1) Brick
+                        2) Buble
+                        3) Cocktail
+                        4) Merge
+                        5) Quick
+                        6) Insertion
 
-Andruhus, I know you read this, just remove this text and write something useful, not procrastinate, Bitte schön
+Then you can ran choose between running one sample and all our experience which is stored in database
 
-Otherwise KZhereb will beat us for this
+If you opt for one sample, it will show you two diagrams of time and memory consumption
 
-ANDRUHUS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+If you opt for all experience it will show you six graph: 1) time consumtion of the array wich was precompiled in ascending order from number of elements
+                                                          2) time consumtion of the array wich was precompiled in random order from number of elements
+                                                          3) time consumtion of the array wich was precompiled in descending order from number of elements
+                                                          4) memory usage the array wich was precompiled in ascending order from number of elements
+                                                          5) memory usage the array wich was precompiled in random order from number of elements
+                                                          6) memory usage the array wich was precompiled in descending order from number of elements
+
+Paterns we used:
+
