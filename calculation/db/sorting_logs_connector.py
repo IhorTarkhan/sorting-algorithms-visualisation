@@ -7,8 +7,6 @@ from entity.SortAlgorithmEnum import SortAlgorithmEnum
 from entity.SortingLog import SortingLog
 
 table = 'sorting_logs'
-
-
 # table = 'sorting_logs_populated'
 
 
