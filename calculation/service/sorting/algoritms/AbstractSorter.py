@@ -27,6 +27,7 @@ def sorting_size(sort, initial_array):
 class AbstractSorter:
     """
         Implementation Polymorphism (OOP)
+        Implementation Template functional pattern
 
         ...
 
