@@ -1,14 +1,15 @@
 import copy
 import time
 
-from memory_profiler import memory_usage
+import psutil
 
 from calculation.service.sorting.SorterResult import SorterResult
 
 
 def sorting_time(sort, initial_array):
+    array_copy = copy.deepcopy(initial_array)
     time_start = time.time()
-    sort(copy.deepcopy(initial_array))
+    sort(array_copy)
     time_stop = time.time()
     different = time_stop - time_start
     return different
@@ -16,7 +17,11 @@ def sorting_time(sort, initial_array):
 
 def sorting_size(sort, initial_array):
     array_copy = copy.deepcopy(initial_array)
-    return sum(memory_usage(lambda: sort(array_copy)))
+    before_use = psutil.virtual_memory().used
+    sort(array_copy)
+    after_use = psutil.virtual_memory().used
+    different = after_use - before_use
+    return abs(different)
 
 
 class AbstractSorter:

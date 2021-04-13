@@ -6,13 +6,18 @@ from entity.ArrayOrderEnum import ArrayOrderEnum
 from entity.SortAlgorithmEnum import SortAlgorithmEnum
 from entity.SortingLog import SortingLog
 
+table = 'sorting_logs'
+
+
+# table = 'sorting_logs_populated'
+
 
 def create_table_if_not_exist():
     """
         Guarantee existing of table 'sorting_logs'
         Recommend to add before your start your app
     """
-    Connector.execute('CREATE TABLE IF NOT EXISTS sorting_logs (' +
+    Connector.execute('CREATE TABLE IF NOT EXISTS ' + table + ' (' +
                       'log_id                  INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,' +
                       'algorithm           VARCHAR(30) NOT NULL,' +
                       'initial_array_order VARCHAR(30) NOT NULL,' +
@@ -26,7 +31,7 @@ def get_all_sorting_logs() -> List[SortingLog]:
         Fetch all rows from database and present if in class format
     """
     response = []
-    result_list = Connector.execute('SELECT * FROM sorting_logs;')
+    result_list = Connector.execute('SELECT * FROM ' + table + ';')
     for result in result_list:
         response.append(
             SortingLog(result[0],
@@ -40,7 +45,7 @@ def get_all_sorting_logs() -> List[SortingLog]:
 
 def create_sorting_log(new_log: SortingLog):
     Connector.execute(
-        'INSERT INTO sorting_logs (algorithm, initial_array_order, array_size, time_usage, size_usage) ' +
+        'INSERT INTO ' + table + ' (algorithm, initial_array_order, array_size, time_usage, size_usage) ' +
         'VALUE ' + save_brackets_generate(new_log) + ';'
     )
 
@@ -54,7 +59,7 @@ def create_sorting_logs(new_logs: List[SortingLog]):
             brackets += ', '
 
     Connector.execute(
-        'INSERT INTO sorting_logs (algorithm, initial_array_order, array_size, time_usage, size_usage) ' +
+        'INSERT INTO ' + table + ' (algorithm, initial_array_order, array_size, time_usage, size_usage) ' +
         'VALUES ' + brackets + ';'
     )
 
@@ -78,7 +83,7 @@ def get_average_logs() -> List[AverageSortingLog]:
     """
     result_list = Connector.execute(
         'SELECT algorithm, initial_array_order, array_size, AVG(time_usage) as avg_time, AVG(size_usage) as avg_size ' +
-        'FROM sorting_logs ' +
+        'FROM ' + table + ' ' +
         'GROUP BY algorithm, initial_array_order, array_size;')
 
     response_list: List[AverageSortingLog] = []

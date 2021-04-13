@@ -19,9 +19,9 @@ class Graphs:
             'Ascending order time(ms)',
             'Random order time(ms)',
             'Descending order time(ms)',
-            'Ascending order size(CU)',
-            'Random order size(CU)',
-            'Descending order size(CU)'
+            'Ascending order size(byte)',
+            'Random order size(byte)',
+            'Descending order size(byte)'
         ]
         self.main_label = 'Algorythms'
 
@@ -46,7 +46,7 @@ class Graphs:
         times = [x.time_usage for x in sorting_results]
         memory = [x.size_usage for x in sorting_results]
         self.draw_hist(times, 'b', 'Time spent(ms)')
-        self.draw_hist(memory, 'g', 'Memory usage(CU)')
+        self.draw_hist(memory, 'g', 'Memory usage(byte)')
 
     def draw_a_line(self, x, y, y_label, some_label):
         plt.plot(x, y, y_label, label=some_label)
