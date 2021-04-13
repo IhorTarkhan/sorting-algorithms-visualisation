@@ -22,12 +22,12 @@
 ##### - If you opt for one sample, it will show you two diagrams of time and memory consumption
 
 #### If you opt for all experience it will show you six graph:
-                                        1) time consumtion of the array wich was precompiled in ascending order from number of elements
-                                        2) time consumtion of the array wich was precompiled in random order from number of elements
-                                        3) time consumtion of the array wich was precompiled in descending order from number of elements
-                                        4) memory usage the array wich was precompiled in ascending order from number of elements
-                                        5) memory usage the array wich was precompiled in random order from number of elements
-                                        6) memory usage the array wich was precompiled in descending order from number of elements
+                1) time consumtion of the array wich was precompiled in ascending order from number of elements
+                2) time consumtion of the array wich was precompiled in random order from number of elements
+                3) time consumtion of the array wich was precompiled in descending order from number of elements
+                4) memory usage the array wich was precompiled in ascending order from number of elements
+                5) memory usage the array wich was precompiled in random order from number of elements
+                6) memory usage the array wich was precompiled in descending order from number of elements
 
 #### Paterns we used:
 
